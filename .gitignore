@@ -21,3 +21,6 @@ frontend/dist/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Spring Boot secrets
+**/application-secret.properties
