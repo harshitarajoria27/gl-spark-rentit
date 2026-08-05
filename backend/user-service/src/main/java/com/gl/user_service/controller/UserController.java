@@ -3,10 +3,7 @@ package com.gl.user_service.controller;
 
 
 
-import com.gl.user_service.dto.AuthResponse;
-import com.gl.user_service.dto.LoginRequest;
-import com.gl.user_service.dto.RegisterRequest;
-import com.gl.user_service.dto.UserResponse;
+import com.gl.user_service.dto.*;
 import com.gl.user_service.service.UserService;
 import jakarta.validation.Valid;
 
@@ -82,6 +79,20 @@ public class UserController {
 
         return ResponseEntity.ok(
                 userService.getProfile(email)
+        );
+
+    }
+    @PutMapping("/profile")
+    public ResponseEntity<UserResponse> updateProfile(
+            @RequestParam String email,
+            @RequestBody UpdateProfileRequest request
+    ){
+
+        return ResponseEntity.ok(
+                userService.updateProfile(
+                        email,
+                        request
+                )
         );
 
     }

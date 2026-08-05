@@ -1,5 +1,6 @@
 package com.gl.resource_service.dto;
 
+import com.gl.resource_service.entity.Condition;
 import lombok.Builder;
 import lombok.Data;
 
@@ -24,6 +25,8 @@ public class ResourceResponse {
     private Double securityDeposit;
 
     private Integer quantity;
+
+    private Condition condition;
 
     private Boolean available;
 

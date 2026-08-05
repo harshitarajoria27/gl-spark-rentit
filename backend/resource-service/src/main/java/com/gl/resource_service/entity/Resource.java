@@ -31,6 +31,8 @@ public class Resource {
     private Double securityDeposit;
 
     private Integer quantity;
+    @Enumerated(EnumType.STRING)
+    private Condition condition;
 
     private Boolean available;
 

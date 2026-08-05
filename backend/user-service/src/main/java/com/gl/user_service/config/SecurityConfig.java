@@ -26,7 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
 
 
     @Bean
@@ -60,15 +60,12 @@ public class SecurityConfig {
 
                         // Everything else requires JWT
                         .anyRequest()
-                        .authenticated()
-                )
+                        .permitAll()
+                );
 
 
                 // Add JWT filter before UsernamePasswordAuthenticationFilter
-                .addFilterBefore(
-                        jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class
-                );
+
 
 
         return http.build();

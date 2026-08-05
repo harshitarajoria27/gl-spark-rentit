@@ -4,10 +4,7 @@ package com.gl.user_service.service;
 
 
 import com.gl.user_service.config.JwtService;
-import com.gl.user_service.dto.AuthResponse;
-import com.gl.user_service.dto.LoginRequest;
-import com.gl.user_service.dto.RegisterRequest;
-import com.gl.user_service.dto.UserResponse;
+import com.gl.user_service.dto.*;
 import com.gl.user_service.entity.User;
 import com.gl.user_service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -102,15 +99,12 @@ public class UserServiceImpl implements UserService {
 
 
         User user =
-                userRepository.findByEmail(
-                                request.getEmail()
-                        )
+                userRepository.findByEmail(request.getEmail())
                         .orElseThrow(
                                 () -> new RuntimeException(
                                         "Invalid email or password"
                                 )
                         );
-
 
 
         if(!passwordEncoder.matches(
@@ -125,12 +119,8 @@ public class UserServiceImpl implements UserService {
         }
 
 
-
         String token =
-                jwtService.generateToken(
-                        user.getEmail()
-                );
-
+                jwtService.generateToken(user);
 
 
         return AuthResponse.builder()
@@ -176,7 +166,7 @@ public class UserServiceImpl implements UserService {
 
         return UserResponse.builder()
 
-                .id(user.getId())
+                .id(user.getUserId())
 
                 .fullName(user.getFullName())
 
@@ -185,7 +175,7 @@ public class UserServiceImpl implements UserService {
                 .phone(user.getPhone())
 
                 .profileImage(user.getProfileImage())
-
+                .bio(user.getBio())
                 .address(user.getAddress())
 
                 .city(user.getCity())
@@ -195,6 +185,57 @@ public class UserServiceImpl implements UserService {
                 .pincode(user.getPincode())
 
                 .build();
+
+    }
+    @Override
+    public UserResponse updateProfile(
+            String email,
+            UpdateProfileRequest request
+    ) {
+
+
+        User user =
+                userRepository.findByEmail(email)
+
+                        .orElseThrow(
+                                () -> new RuntimeException(
+                                        "User not found"
+                                )
+                        );
+
+
+        if(request.getProfileImage() != null){
+
+            user.setProfileImage(
+                    request.getProfileImage()
+            );
+
+        }
+
+
+        if(request.getBio() != null){
+
+            user.setBio(
+                    request.getBio()
+            );
+
+        }
+
+
+        if(request.getAddress() != null){
+
+            user.setAddress(
+                    request.getAddress()
+            );
+
+        }
+
+
+        User updatedUser =
+                userRepository.save(user);
+
+
+        return mapToResponse(updatedUser);
 
     }
 

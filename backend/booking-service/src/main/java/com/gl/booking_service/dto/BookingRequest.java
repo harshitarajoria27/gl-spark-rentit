@@ -6,7 +6,7 @@ import lombok.Data;
 public class BookingRequest {
 
 
-    private Long userId;
+
 
     private Long resourceId;
 

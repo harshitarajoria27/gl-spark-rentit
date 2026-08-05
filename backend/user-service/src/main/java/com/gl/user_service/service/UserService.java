@@ -1,10 +1,7 @@
 package com.gl.user_service.service;
 
 
-import com.gl.user_service.dto.AuthResponse;
-import com.gl.user_service.dto.LoginRequest;
-import com.gl.user_service.dto.RegisterRequest;
-import com.gl.user_service.dto.UserResponse;
+import com.gl.user_service.dto.*;
 
 public interface UserService {
 
@@ -16,6 +13,9 @@ public interface UserService {
 
 
     UserResponse getProfile(String email);
-
+    UserResponse updateProfile(
+            String email,
+            UpdateProfileRequest request
+    );
 
 }

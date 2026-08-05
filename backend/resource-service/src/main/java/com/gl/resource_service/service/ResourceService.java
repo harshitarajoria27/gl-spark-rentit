@@ -12,7 +12,7 @@ public interface ResourceService {
 
 
     ResourceResponse addResource(
-            ResourceRequest request);
+            ResourceRequest request,Long ownerId);
 
 
 

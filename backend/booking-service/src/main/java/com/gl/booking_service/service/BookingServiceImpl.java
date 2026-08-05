@@ -16,17 +16,20 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking createBooking(BookingRequest request) {
+    public Booking createBooking(
+            BookingRequest request,
+            Long userId) {
 
         Booking booking = new Booking();
 
-        booking.setUserId(request.getUserId());
+        booking.setUserId(userId);
         booking.setResourceId(request.getResourceId());
         booking.setRentalDays(request.getRentalDays());
         booking.setStatus(BookingStatus.CREATED);
 
         return repository.save(booking);
     }
+
     @Override
     public Booking cancelBooking(Long bookingId) {
 
@@ -38,6 +41,29 @@ public class BookingServiceImpl implements BookingService {
         }
 
         booking.setStatus(BookingStatus.CANCELLED);
+
+        return repository.save(booking);
+    }
+
+    @Override
+    public Booking updateRentalDays(
+            Long bookingId,
+            Long userId,
+            Integer rentalDays) {
+
+        Booking booking = repository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        // Ensure only the owner of the booking can update it
+        if (!booking.getUserId().equals(userId)) {
+            throw new RuntimeException("You are not authorized to update this booking.");
+        }
+
+        if (booking.getStatus() == BookingStatus.CANCELLED) {
+            throw new RuntimeException("Cancelled booking cannot be updated.");
+        }
+
+        booking.setRentalDays(rentalDays);
 
         return repository.save(booking);
     }

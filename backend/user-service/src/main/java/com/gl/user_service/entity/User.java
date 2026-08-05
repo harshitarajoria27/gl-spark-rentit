@@ -17,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @NotBlank(message = "Full name is required")
     @Column(nullable = false)
@@ -38,7 +38,7 @@ public class User {
     private String profileImage;
 
     private String address;
-
+    private String bio;
     private String city;
 
     private String state;
@@ -60,4 +60,6 @@ public class User {
     public void preUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+
 }

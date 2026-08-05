@@ -1,257 +1,152 @@
 package com.gl.resource_service.service;
 
-
-
-
 import com.gl.resource_service.dto.*;
 import com.gl.resource_service.entity.Resource;
 import com.gl.resource_service.exception.ResourceNotFoundException;
 import com.gl.resource_service.repository.ResourceRepository;
-
-
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Service;
-
 
 import java.time.LocalDate;
 import java.util.List;
 
-
-
 @Service
 @RequiredArgsConstructor
-public class ResourceServiceImpl
-        implements ResourceService {
-
+public class ResourceServiceImpl implements ResourceService {
 
     private final ResourceRepository repository;
 
-
-
     @Override
     public ResourceResponse addResource(
-            ResourceRequest request){
-
+            ResourceRequest request,
+            Long ownerId) {
 
         Resource resource = Resource.builder()
-
-                .ownerId(request.getOwnerId())
+                .ownerId(ownerId)
                 .title(request.getTitle())
                 .description(request.getDescription())
                 .category(request.getCategory())
                 .rentPerDay(request.getRentPerDay())
                 .securityDeposit(request.getSecurityDeposit())
                 .quantity(request.getQuantity())
+                .condition(request.getCondition())
                 .available(true)
                 .city(request.getCity())
                 .state(request.getState())
                 .imageUrl(request.getImageUrl())
                 .createdDate(LocalDate.now())
-
                 .build();
 
-
-        return convert(
-                repository.save(resource)
-        );
-
+        return convert(repository.save(resource));
     }
 
-
-
     @Override
-    public ResourceResponse getResourceById(Long id){
+    public ResourceResponse getResourceById(Long id) {
 
-
-        Resource resource =
-                repository.findById(id)
-                        .orElseThrow(
-                                () -> new ResourceNotFoundException(
-                                        "Resource not found with id : "+id
-                                )
-                        );
-
+        Resource resource = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Resource not found with id : " + id
+                ));
 
         return convert(resource);
-
     }
 
-
-
     @Override
-    public List<ResourceResponse> getAllResources(){
-
+    public List<ResourceResponse> getAllResources() {
 
         return repository.findAll()
                 .stream()
                 .map(this::convert)
                 .toList();
-
     }
 
-
-
-
     @Override
-    public List<ResourceResponse> getResourcesByOwner(
-            Long ownerId){
-
+    public List<ResourceResponse> getResourcesByOwner(Long ownerId) {
 
         return repository.findByOwnerId(ownerId)
                 .stream()
                 .map(this::convert)
                 .toList();
-
     }
-
-
-
 
     @Override
     public ResourceResponse updateResource(
             Long id,
-            ResourceUpdateRequest request){
+            ResourceUpdateRequest request) {
 
-
-        Resource resource =
-                repository.findById(id)
-                        .orElseThrow(
-                                () -> new ResourceNotFoundException(
-                                        "Resource not found with id : "+id
-                                )
-                        );
-
-
+        Resource resource = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Resource not found with id : " + id
+                ));
 
         resource.setTitle(request.getTitle());
 
-        resource.setDescription(
-                request.getDescription()
-        );
+        resource.setDescription(request.getDescription());
 
-        resource.setCategory(
-                request.getCategory()
-        );
+        resource.setCategory(request.getCategory());
 
-        resource.setRentPerDay(
-                request.getRentPerDay()
-        );
+        resource.setRentPerDay(request.getRentPerDay());
 
-        resource.setSecurityDeposit(
-                request.getSecurityDeposit()
-        );
+        resource.setSecurityDeposit(request.getSecurityDeposit());
 
-        resource.setQuantity(
-                request.getQuantity()
-        );
+        resource.setQuantity(request.getQuantity());
 
-        resource.setAvailable(
-                request.getAvailable()
-        );
+        resource.setCondition(request.getCondition());
 
-        resource.setCity(
-                request.getCity()
-        );
+        resource.setAvailable(request.getAvailable());
 
-        resource.setState(
-                request.getState()
-        );
+        resource.setCity(request.getCity());
 
-        resource.setImageUrl(
-                request.getImageUrl()
-        );
+        resource.setState(request.getState());
 
+        resource.setImageUrl(request.getImageUrl());
 
-
-        return convert(
-                repository.save(resource)
-        );
-
+        return convert(repository.save(resource));
     }
-
-
-
 
     @Override
-    public void deleteResource(Long id){
+    public void deleteResource(Long id) {
 
-
-        Resource resource =
-                repository.findById(id)
-                        .orElseThrow(
-                                () -> new ResourceNotFoundException(
-                                        "Resource not found"
-                                )
-                        );
-
+        Resource resource = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Resource not found"
+                ));
 
         repository.delete(resource);
-
     }
 
-
-
-
-    private ResourceResponse convert(Resource resource){
-
+    private ResourceResponse convert(Resource resource) {
 
         return ResourceResponse.builder()
 
-                .resourceId(
-                        resource.getResourceId()
-                )
+                .resourceId(resource.getResourceId())
 
-                .ownerId(
-                        resource.getOwnerId()
-                )
+                .ownerId(resource.getOwnerId())
 
-                .title(
-                        resource.getTitle()
-                )
+                .title(resource.getTitle())
 
-                .description(
-                        resource.getDescription()
-                )
+                .description(resource.getDescription())
 
-                .category(
-                        resource.getCategory()
-                )
+                .category(resource.getCategory())
 
-                .rentPerDay(
-                        resource.getRentPerDay()
-                )
+                .rentPerDay(resource.getRentPerDay())
 
-                .securityDeposit(
-                        resource.getSecurityDeposit()
-                )
+                .securityDeposit(resource.getSecurityDeposit())
 
-                .quantity(
-                        resource.getQuantity()
-                )
+                .quantity(resource.getQuantity())
 
-                .available(
-                        resource.getAvailable()
-                )
+                .condition(resource.getCondition())
 
-                .city(
-                        resource.getCity()
-                )
+                .available(resource.getAvailable())
 
-                .state(
-                        resource.getState()
-                )
+                .city(resource.getCity())
 
-                .imageUrl(
-                        resource.getImageUrl()
-                )
+                .state(resource.getState())
 
-                .createdDate(
-                        resource.getCreatedDate()
-                )
+                .imageUrl(resource.getImageUrl())
+
+                .createdDate(resource.getCreatedDate())
 
                 .build();
-
     }
-
 }

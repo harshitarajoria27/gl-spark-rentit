@@ -5,6 +5,14 @@ import com.gl.booking_service.entity.Booking;
 
 public interface BookingService {
 
-    Booking createBooking(BookingRequest request);
+    Booking createBooking(
+            BookingRequest request,
+            Long userId);
+
     Booking cancelBooking(Long bookingId);
+
+    Booking updateRentalDays(
+            Long bookingId,
+            Long userId,
+            Integer rentalDays);
 }
