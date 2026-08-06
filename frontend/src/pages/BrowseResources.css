@@ -1,0 +1,992 @@
+/* =========================================
+   BROWSE RESOURCES
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.browse-page {
+  min-height: 100vh;
+  padding: 45px 25px 70px;
+  background: #f8fafc;
+}
+
+.browse-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* HEADER */
+
+.browse-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 32px;
+}
+
+.browse-label {
+  display: inline-block;
+  margin-bottom: 7px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.browse-header h1 {
+  margin: 0 0 7px;
+
+  color: #0f172a;
+
+  font-size: 31px;
+  font-weight: 700;
+}
+
+.browse-header p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.browse-back-btn {
+  flex-shrink: 0;
+
+  padding: 10px 17px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.browse-back-btn:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+
+/* =========================================
+   RESOURCE GRID
+========================================= */
+
+.browse-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+
+/* =========================================
+   RESOURCE CARD
+========================================= */
+
+.browse-card {
+  overflow: hidden;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 6px 20px rgba(15, 23, 42, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.browse-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 14px 30px rgba(15, 23, 42, 0.09);
+}
+
+
+/* =========================================
+   RESOURCE IMAGE
+========================================= */
+
+.browse-card-image {
+  position: relative;
+
+  width: 100%;
+  height: 210px;
+
+  overflow: hidden;
+
+  background: #f1f5f9;
+}
+
+.browse-card-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.browse-no-image {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #94a3b8;
+
+  font-size: 45px;
+}
+
+.browse-available {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  padding: 5px 10px;
+
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+
+  background: #f0fdf4;
+
+  color: #15803d;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.browse-card-content {
+  padding: 20px;
+}
+
+.browse-category {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.browse-card-content h2 {
+  margin: 0 0 8px;
+
+  color: #0f172a;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.browse-description {
+  min-height: 42px;
+
+  margin: 0 0 14px;
+
+  overflow: hidden;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.55;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.browse-location {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 17px;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.browse-details {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  padding: 15px 0;
+
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.browse-details > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.browse-details span {
+  color: #94a3b8;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.browse-details strong {
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.browse-price-row {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 15px;
+
+  padding: 17px 0;
+}
+
+.browse-price-label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+.browse-price {
+  color: #0f172a;
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.browse-price span {
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.browse-deposit {
+  text-align: right;
+}
+
+.browse-deposit span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+.browse-deposit strong {
+  color: #475569;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   CARD BUTTONS
+========================================= */
+
+.browse-actions {
+  display: grid;
+
+  grid-template-columns: 1fr 1.4fr;
+
+  gap: 9px;
+}
+
+.browse-view-btn,
+.borrow-request-btn {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 41px;
+
+  padding: 10px 9px;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.browse-view-btn {
+  border: 1px solid #cbd5e1;
+
+  background: #ffffff;
+
+  color: #475569;
+}
+
+.browse-view-btn:hover {
+  border-color: #94a3b8;
+
+  background: #f8fafc;
+}
+
+.borrow-request-btn {
+  border: 1px solid #2563eb;
+
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+.borrow-request-btn:hover {
+  border-color: #1d4ed8;
+
+  background: #1d4ed8;
+}
+
+
+/* =========================================
+   LOADING / EMPTY
+========================================= */
+
+.browse-message,
+.browse-empty {
+  padding: 65px 25px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  text-align: center;
+
+  box-shadow:
+    0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.browse-empty-icon {
+  margin-bottom: 12px;
+
+  font-size: 42px;
+}
+
+.browse-empty h2 {
+  margin: 0 0 7px;
+
+  color: #0f172a;
+}
+
+.browse-empty p {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.browse-error {
+  margin-bottom: 25px;
+
+  padding: 13px 15px;
+
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+
+  background: #fef2f2;
+
+  color: #b91c1c;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   BOOKING SUCCESS
+========================================= */
+
+.booking-success {
+  margin-bottom: 25px;
+
+  padding: 13px 15px;
+
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+
+  background: #f0fdf4;
+
+  color: #15803d;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* =========================================
+   BORROW MODAL OVERLAY
+========================================= */
+
+.borrow-modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(15, 23, 42, 0.55);
+
+  backdrop-filter: blur(3px);
+}
+
+
+/* =========================================
+   BORROW MODAL
+========================================= */
+
+.borrow-modal {
+  width: 100%;
+  max-width: 520px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 27px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 25px 60px rgba(15, 23, 42, 0.25);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.borrow-modal-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 20px;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.borrow-modal-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #2563eb;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+}
+
+.borrow-modal-header h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 21px;
+}
+
+.borrow-modal-close {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #f1f5f9;
+
+  color: #64748b;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.borrow-modal-close:hover:not(:disabled) {
+  background: #e2e8f0;
+
+  color: #0f172a;
+}
+
+
+/* =========================================
+   RESOURCE SUMMARY
+========================================= */
+
+.borrow-resource-summary {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 20px 0;
+}
+
+.borrow-resource-summary img,
+.borrow-resource-placeholder {
+  width: 70px;
+  height: 70px;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+}
+
+.borrow-resource-summary img {
+  object-fit: cover;
+}
+
+.borrow-resource-placeholder {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f1f5f9;
+
+  font-size: 28px;
+}
+
+.borrow-resource-summary > div:last-child {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.borrow-resource-summary span {
+  color: #2563eb;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.borrow-resource-summary strong {
+  color: #0f172a;
+
+  font-size: 15px;
+}
+
+.borrow-resource-summary p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   MODAL RENT DETAILS
+========================================= */
+
+.borrow-modal-details {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.borrow-modal-details > div {
+  padding: 13px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+
+  background: #f8fafc;
+}
+
+.borrow-modal-details span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #94a3b8;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+.borrow-modal-details strong {
+  color: #0f172a;
+
+  font-size: 15px;
+}
+
+
+/* =========================================
+   RENTAL DAYS INPUT
+========================================= */
+
+.borrow-days-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+  margin-bottom: 20px;
+}
+
+.borrow-days-group label {
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.borrow-days-group input {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.borrow-days-group input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================
+   PRICE SUMMARY
+========================================= */
+
+.borrow-price-summary {
+  margin-bottom: 20px;
+
+  padding: 16px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+
+  background: #f8fafc;
+}
+
+.borrow-price-summary > div {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 9px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.borrow-price-summary > div:last-child {
+  margin-bottom: 0;
+}
+
+.borrow-price-summary strong {
+  color: #334155;
+}
+
+.borrow-price-summary .borrow-total {
+  margin-top: 12px;
+  padding-top: 12px;
+
+  border-top: 1px solid #cbd5e1;
+
+  color: #0f172a;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.borrow-total strong {
+  color: #2563eb;
+
+  font-size: 17px;
+}
+
+
+/* =========================================
+   MODAL ERROR
+========================================= */
+
+.booking-modal-error {
+  margin-bottom: 18px;
+
+  padding: 11px 13px;
+
+  border: 1px solid #fecaca;
+  border-radius: 7px;
+
+  background: #fef2f2;
+
+  color: #b91c1c;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   MODAL ACTIONS
+========================================= */
+
+.borrow-modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+}
+
+.borrow-cancel-btn,
+.borrow-confirm-btn {
+  padding: 10px 17px;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.borrow-cancel-btn {
+  border: 1px solid #cbd5e1;
+
+  background: #ffffff;
+
+  color: #475569;
+}
+
+.borrow-cancel-btn:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.borrow-confirm-btn {
+  border: 1px solid #2563eb;
+
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+.borrow-confirm-btn:hover:not(:disabled) {
+  border-color: #1d4ed8;
+
+  background: #1d4ed8;
+}
+
+.borrow-confirm-btn:disabled,
+.borrow-cancel-btn:disabled,
+.borrow-modal-close:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .browse-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+  .browse-page {
+    padding: 30px 16px 50px;
+  }
+
+  .browse-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .browse-back-btn {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .browse-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .browse-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 550px) {
+
+  .borrow-modal-overlay {
+    padding: 12px;
+  }
+
+  .borrow-modal {
+    padding: 21px 17px;
+
+    border-radius: 13px;
+  }
+
+  .borrow-modal-details {
+    grid-template-columns: 1fr;
+  }
+
+  .borrow-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .borrow-cancel-btn,
+  .borrow-confirm-btn {
+    width: 100%;
+  }
+}

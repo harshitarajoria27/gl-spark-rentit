@@ -8,13 +8,13 @@ public interface UserService {
 
     UserResponse register(RegisterRequest request);
 
-
+    UserResponse getUserById(Long userId);
     AuthResponse login(LoginRequest request);
 
 
-    UserResponse getProfile(String email);
+    UserResponse getProfile(Long userId);
     UserResponse updateProfile(
-            String email,
+            Long userId,
             UpdateProfileRequest request
     );
 

@@ -1,5 +1,6 @@
 package com.gl.resource_service.service;
 
+
 import com.gl.resource_service.dto.*;
 import com.gl.resource_service.entity.Resource;
 import com.gl.resource_service.exception.ResourceNotFoundException;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ResourceServiceImpl implements ResourceService {
 
     private final ResourceRepository repository;
+
 
     @Override
     public ResourceResponse addResource(
@@ -52,9 +54,10 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public List<ResourceResponse> getAllResources() {
+    public List<ResourceResponse> getAllResources(Long userId) {
 
-        return repository.findAll()
+        return repository
+                .findByOwnerIdNotAndAvailableTrue(userId)
                 .stream()
                 .map(this::convert)
                 .toList();
@@ -117,35 +120,71 @@ public class ResourceServiceImpl implements ResourceService {
 
     private ResourceResponse convert(Resource resource) {
 
+
+
+
         return ResourceResponse.builder()
 
-                .resourceId(resource.getResourceId())
+                .resourceId(
+                        resource.getResourceId()
+                )
 
-                .ownerId(resource.getOwnerId())
+                .ownerId(
+                        resource.getOwnerId()
+                )
 
-                .title(resource.getTitle())
+                .title(
+                        resource.getTitle()
+                )
 
-                .description(resource.getDescription())
+                .description(
+                        resource.getDescription()
+                )
 
-                .category(resource.getCategory())
+                .category(
+                        resource.getCategory()
+                )
 
-                .rentPerDay(resource.getRentPerDay())
+                .rentPerDay(
+                        resource.getRentPerDay()
+                )
 
-                .securityDeposit(resource.getSecurityDeposit())
+                .securityDeposit(
+                        resource.getSecurityDeposit()
+                )
 
-                .quantity(resource.getQuantity())
+                .quantity(
+                        resource.getQuantity()
+                )
 
-                .condition(resource.getCondition())
+                .condition(
+                        resource.getCondition()
+                )
 
-                .available(resource.getAvailable())
+                .available(
+                        resource.getAvailable()
+                )
 
-                .city(resource.getCity())
+                .city(
+                        resource.getCity()
+                )
 
-                .state(resource.getState())
+                .state(
+                        resource.getState()
+                )
 
-                .imageUrl(resource.getImageUrl())
+                .imageUrl(
+                        resource.getImageUrl()
+                )
 
-                .createdDate(resource.getCreatedDate())
+                .createdDate(
+                        resource.getCreatedDate()
+                )
+
+
+                // OWNER DETAILS
+
+
 
                 .build();
     }

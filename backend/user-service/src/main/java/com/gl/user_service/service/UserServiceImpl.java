@@ -87,6 +87,19 @@ public class UserServiceImpl implements UserService {
         return mapToResponse(savedUser);
 
     }
+    @Override
+    public UserResponse getUserById(Long userId) {
+
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "User not found with id : " + userId
+                        )
+                );
+
+        return mapToResponse(user);
+    }
 
 
 
@@ -137,23 +150,16 @@ public class UserServiceImpl implements UserService {
 
 
     // Get Profile
-
     @Override
-    public UserResponse getProfile(String email) {
+    public UserResponse getProfile(Long userId) {
 
-
-        User user =
-                userRepository.findByEmail(email)
-
-                        .orElseThrow(
-                                () -> new RuntimeException(
-                                        "User not found"
-                                )
-                        );
-
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() ->
+                        new RuntimeException("User not found")
+                );
 
         return mapToResponse(user);
-
     }
 
 
@@ -189,46 +195,26 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public UserResponse updateProfile(
-            String email,
+            Long userId,
             UpdateProfileRequest request
     ) {
 
-
-        User user =
-                userRepository.findByEmail(email)
-
-                        .orElseThrow(
-                                () -> new RuntimeException(
-                                        "User not found"
-                                )
-                        );
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() ->
+                        new RuntimeException("User not found")
+                );
 
 
-        if(request.getProfileImage() != null){
+        user.setPhone(request.getPhone());
 
-            user.setProfileImage(
-                    request.getProfileImage()
-            );
+        user.setProfileImage(request.getProfileImage());
+        user.setBio(request.getBio());
 
-        }
-
-
-        if(request.getBio() != null){
-
-            user.setBio(
-                    request.getBio()
-            );
-
-        }
-
-
-        if(request.getAddress() != null){
-
-            user.setAddress(
-                    request.getAddress()
-            );
-
-        }
+        user.setAddress(request.getAddress());
+        user.setCity(request.getCity());
+        user.setState(request.getState());
+        user.setPincode(request.getPincode());
 
 
         User updatedUser =
@@ -236,7 +222,6 @@ public class UserServiceImpl implements UserService {
 
 
         return mapToResponse(updatedUser);
-
     }
 
 }

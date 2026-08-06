@@ -5,9 +5,6 @@ import lombok.Data;
 @Data
 public class BookingRequest {
 
-
-
-
     private Long resourceId;
 
     private Integer rentalDays;

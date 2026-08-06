@@ -2,9 +2,8 @@ package com.gl.booking_service.entity;
 
 public enum BookingStatus {
 
-    CREATED,
-    CONFIRMED,
-    ACTIVE,
-    COMPLETED,
+    PENDING,
+    APPROVED,
+    REJECTED,
     CANCELLED
 }

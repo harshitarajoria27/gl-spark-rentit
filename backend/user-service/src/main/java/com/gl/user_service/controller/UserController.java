@@ -44,7 +44,15 @@ public class UserController {
     }
 
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponse> getUserById(
+            @PathVariable Long userId
+    ) {
 
+        return ResponseEntity.ok(
+                userService.getUserById(userId)
+        );
+    }
 
 
     // Login API
@@ -65,36 +73,29 @@ public class UserController {
 
 
     // Get Profile API
-
     @GetMapping("/profile")
     public ResponseEntity<UserResponse> getProfile(
-            Authentication authentication
-    ){
-
-
-        String email =
-                authentication.getName();
-
-
+            @RequestHeader("X-User-Id") Long userId
+    ) {
 
         return ResponseEntity.ok(
-                userService.getProfile(email)
+                userService.getProfile(userId)
         );
-
     }
+
+
     @PutMapping("/profile")
     public ResponseEntity<UserResponse> updateProfile(
-            @RequestParam String email,
+            @RequestHeader("X-User-Id") Long userId,
             @RequestBody UpdateProfileRequest request
-    ){
+    ) {
 
         return ResponseEntity.ok(
                 userService.updateProfile(
-                        email,
+                        userId,
                         request
                 )
         );
-
     }
 
 }

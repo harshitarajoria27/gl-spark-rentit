@@ -1,16 +1,17 @@
 package com.gl.booking_service.client;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.gl.booking_service.dto.ResourceResponse;
 
-@FeignClient(name="resource-service")
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
+
+@FeignClient(name = "RESOURCE-SERVICE")
 public interface ResourceClient {
 
 
-    @GetMapping("/api/resources/{id}")
-    Object getResource(
-            @PathVariable Long id
+    @GetMapping("/resources/{id}")
+    ResourceResponse getResourceById(
+            @PathVariable("id") Long resourceId
     );
 
 }

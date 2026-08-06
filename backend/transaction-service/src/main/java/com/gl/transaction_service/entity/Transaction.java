@@ -19,49 +19,85 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
 
-    // Booking Details
+
+    // -------------------------
+    // BOOKING / RESOURCE
+    // -------------------------
+
     private Long bookingId;
 
     private Long resourceId;
 
-    // Users
+
+    // -------------------------
+    // USERS
+    // -------------------------
+
     private Long renterId;
 
     private Long ownerId;
 
-    // Rent Details
+
+    // -------------------------
+    // RENT DETAILS
+    // -------------------------
+
     private Double rentPerDay;
 
     private Integer rentalDays;
 
     private Double totalRent;
 
-    // Deposit Details
     private Double securityDeposit;
 
-    private Double damageCharges;
 
-    private Double refundAmount;
+    // -------------------------
+    // PAYMENT
+    // -------------------------
 
-    // Payment
-    @Enumerated(EnumType.STRING)
-    private PaymentMethod paymentMethod;
+
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
-    // Dates
+
+    // -------------------------
+    // DATES
+    // -------------------------
+
     private LocalDate bookingDate;
 
     private LocalDate expectedReturnDate;
 
-    private LocalDate actualReturnDate;
+    private LocalDateTime createdAt;
 
-    // Transaction Status
+
+    // -------------------------
+    // TRANSACTION STATUS
+    // -------------------------
+
     @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
-    private LocalDateTime createdAt;
+
+    // -------------------------
+    // CHECKBOXES
+    // -------------------------
+
+    private Boolean rentPaid;
+
+    private Boolean securityDepositPaid;
+
+    private Boolean resourceCollected;
+
+    private Boolean resourceReturned;
+
+    private Boolean securityDepositReturned;
+
+
+    // -------------------------
+    // CREATED TIME
+    // -------------------------
 
     @PrePersist
     public void onCreate() {

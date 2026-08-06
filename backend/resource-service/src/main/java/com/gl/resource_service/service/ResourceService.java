@@ -21,7 +21,7 @@ public interface ResourceService {
 
 
 
-    List<ResourceResponse> getAllResources();
+    List<ResourceResponse> getAllResources(Long userId);
 
 
 

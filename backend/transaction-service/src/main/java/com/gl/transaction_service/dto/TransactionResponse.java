@@ -1,6 +1,5 @@
 package com.gl.transaction_service.dto;
 
-import com.gl.transaction_service.entity.PaymentMethod;
 import com.gl.transaction_service.entity.PaymentStatus;
 import com.gl.transaction_service.entity.TransactionStatus;
 import lombok.*;
@@ -13,6 +12,15 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class TransactionResponse {
+    private Boolean rentPaid;
+
+    private Boolean securityDepositPaid;
+
+    private Boolean resourceCollected;
+
+    private Boolean resourceReturned;
+
+    private Boolean securityDepositReturned;
 
     private Long transactionId;
 
@@ -36,7 +44,7 @@ public class TransactionResponse {
 
     private Double refundAmount;
 
-    private PaymentMethod paymentMethod;
+
 
     private PaymentStatus paymentStatus;
 
@@ -47,5 +55,10 @@ public class TransactionResponse {
     private LocalDate actualReturnDate;
 
     private TransactionStatus status;
+    private String resourceName;
+
+    private String ownerName;
+
+    private String borrowerName;
 
 }

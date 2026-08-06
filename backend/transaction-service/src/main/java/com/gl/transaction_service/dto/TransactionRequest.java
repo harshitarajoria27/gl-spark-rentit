@@ -1,6 +1,5 @@
 package com.gl.transaction_service.dto;
 
-import com.gl.transaction_service.entity.PaymentMethod;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -28,6 +27,6 @@ public class TransactionRequest {
 
     private LocalDate expectedReturnDate;
 
-    private PaymentMethod paymentMethod;
+
 
 }

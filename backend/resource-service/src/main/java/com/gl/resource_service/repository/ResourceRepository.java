@@ -12,5 +12,6 @@ public interface ResourceRepository extends JpaRepository<Resource, Long> {
     List<Resource> findByCategory(String category);
 
     List<Resource> findByAvailableTrue();
+    List<Resource> findByOwnerIdNotAndAvailableTrue(Long ownerId);
 }
 

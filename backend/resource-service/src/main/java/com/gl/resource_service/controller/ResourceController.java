@@ -26,10 +26,12 @@ public class ResourceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ResourceResponse>> getAll() {
+    public ResponseEntity<List<ResourceResponse>> getAll(
+            @RequestHeader("X-User-Id") Long userId
+    ) {
 
         return ResponseEntity.ok(
-                service.getAllResources()
+                service.getAllResources(userId)
         );
     }
 

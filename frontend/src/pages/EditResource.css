@@ -1,0 +1,548 @@
+/* =========================================
+   EDIT RESOURCE PAGE
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.edit-resource-page {
+  min-height: 100vh;
+
+  padding: 45px 25px 70px;
+
+  background: #f8fafc;
+}
+
+.edit-resource-container {
+  width: 100%;
+  max-width: 1050px;
+
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.edit-resource-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 25px;
+
+  margin-bottom: 30px;
+}
+
+.edit-resource-label {
+  display: inline-block;
+
+  margin-bottom: 7px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1.3px;
+}
+
+.edit-resource-header h1 {
+  margin: 0 0 7px;
+
+  color: #0f172a;
+
+  font-size: 31px;
+  font-weight: 700;
+}
+
+.edit-resource-header p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   BACK TO MY RESOURCES BUTTON
+========================================= */
+
+.back-resources-btn {
+  flex-shrink: 0;
+
+  padding: 10px 17px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.back-resources-btn:hover {
+  border-color: #94a3b8;
+
+  background: #f8fafc;
+
+  color: #0f172a;
+}
+
+
+/* =========================================
+   MAIN FORM CARD
+========================================= */
+
+.edit-resource-form {
+  padding: 30px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================
+   FORM SECTIONS
+========================================= */
+
+.edit-form-section {
+  padding-bottom: 30px;
+
+  margin-bottom: 30px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.edit-form-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.edit-section-heading {
+  margin-bottom: 20px;
+}
+
+.edit-section-heading h2 {
+  margin: 0 0 5px;
+
+  color: #0f172a;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.edit-section-heading p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.edit-resource-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.edit-full-width {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.edit-form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.edit-form-group label {
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   INPUT / TEXTAREA / SELECT
+========================================= */
+
+.edit-form-group input,
+.edit-form-group textarea,
+.edit-form-group select {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.edit-form-group input:hover,
+.edit-form-group textarea:hover,
+.edit-form-group select:hover {
+  border-color: #94a3b8;
+}
+
+.edit-form-group input:focus,
+.edit-form-group textarea:focus,
+.edit-form-group select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.edit-form-group input::placeholder,
+.edit-form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+.edit-form-group textarea {
+  min-height: 115px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+.edit-form-group select {
+  cursor: pointer;
+}
+
+
+/* =========================================
+   IMAGE PREVIEW
+========================================= */
+
+.edit-image-preview {
+  width: 240px;
+  height: 170px;
+
+  margin-top: 18px;
+
+  overflow: hidden;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+
+  background: #f8fafc;
+}
+
+.edit-image-preview img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+.edit-resource-error {
+  margin-bottom: 25px;
+
+  padding: 12px 15px;
+
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+
+  background: #fef2f2;
+
+  color: #b91c1c;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   LOADING MESSAGE
+========================================= */
+
+.edit-resource-message {
+  padding: 50px 25px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+
+.edit-form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 12px;
+
+  padding-top: 5px;
+}
+
+
+/* =========================================
+   CANCEL BUTTON
+========================================= */
+
+.cancel-edit-btn {
+  padding: 10px 18px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.cancel-edit-btn:hover {
+  border-color: #94a3b8;
+
+  background: #f8fafc;
+
+  color: #0f172a;
+}
+
+
+/* =========================================
+   SAVE BUTTON
+========================================= */
+
+.save-edit-btn {
+  padding: 10px 20px;
+
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.save-edit-btn:hover:not(:disabled) {
+  border-color: #1d4ed8;
+
+  background: #1d4ed8;
+}
+
+.save-edit-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.save-edit-btn:disabled {
+  border-color: #94a3b8;
+
+  background: #94a3b8;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+  .edit-resource-page {
+    padding: 35px 20px 60px;
+  }
+
+  .edit-resource-form {
+    padding: 25px;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+  .edit-resource-page {
+    padding: 28px 16px 50px;
+  }
+
+
+  /* HEADER */
+
+  .edit-resource-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 18px;
+  }
+
+  .edit-resource-header h1 {
+    font-size: 27px;
+  }
+
+  .back-resources-btn {
+    width: 100%;
+
+    text-align: center;
+  }
+
+
+  /* FORM CARD */
+
+  .edit-resource-form {
+    padding: 22px 18px;
+
+    border-radius: 13px;
+  }
+
+
+  /* GRID */
+
+  .edit-resource-grid {
+    grid-template-columns: 1fr;
+
+    gap: 17px;
+  }
+
+  .edit-full-width {
+    grid-column: auto;
+  }
+
+
+  /* SECTIONS */
+
+  .edit-form-section {
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+  }
+
+
+  /* IMAGE */
+
+  .edit-image-preview {
+    width: 100%;
+    height: 220px;
+  }
+
+
+  /* ACTIONS */
+
+  .edit-form-actions {
+    flex-direction: column-reverse;
+
+    gap: 10px;
+  }
+
+  .cancel-edit-btn,
+  .save-edit-btn {
+    width: 100%;
+
+    text-align: center;
+  }
+}

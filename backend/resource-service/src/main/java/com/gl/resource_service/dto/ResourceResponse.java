@@ -26,6 +26,7 @@ public class ResourceResponse {
 
     private Integer quantity;
 
+
     private Condition condition;
 
     private Boolean available;
